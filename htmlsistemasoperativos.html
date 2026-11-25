@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sistemas Operativos · Consultora AGIL</title>
+  <style>
+    :root {
+      --bg-dark: #050a08;
+      --bg-card: #0b1612;
+      --bg-card-alt: #0f1f19;
+      --primary: #00ff88;       /* Verde neón técnico para Sistemas Operativos */
+      --secondary: #ffb800;     /* Ámbar/dorado para métricas y hardware */
+      --accent-alt: #00d4ff;    /* Cian reservado para etiqueta Windows 11 */
+      --text-main: #e8f5ee;
+      --text-muted: #9ab5a7;
+      --border-subtle: rgba(0, 255, 136, 0.14);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      background-color: var(--bg-dark);
+      background-image:
+        radial-gradient(circle at 12% 14%, rgba(0, 255, 136, 0.09), transparent 36%),
+        radial-gradient(circle at 88% 18%, rgba(255, 184, 0, 0.08), transparent 36%),
+        radial-gradient(circle at 50% 92%, rgba(0, 255, 136, 0.06), transparent 42%);
+      color: var(--text-main);
+      line-height: 1.6;
+      padding: 28px 16px 56px;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .container {
+      max-width: 1120px;
+      margin: 0 auto;
+    }
+
+    /* HERO */
+    .hero {
+      background: linear-gradient(145deg, #0b1914, #060d0a);
+      border: 1px solid rgba(0, 255, 136, 0.45);
+      border-left: 5px solid var(--primary);
+      box-shadow: 0 0 28px rgba(0, 255, 136, 0.14), inset 0 0 18px rgba(0, 255, 136, 0.05);
+      border-radius: 18px;
+      padding: 36px 32px;
+      margin-bottom: 28px;
+    }
+
+    .badge-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+
+    .badge {
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      padding: 5px 11px;
+      border-radius: 999px;
+      border: 1px solid;
+    }
+
+    .badge-primary {
+      color: var(--primary);
+      border-color: var(--primary);
+      background: rgba(0, 255, 136, 0.1);
+    }
+
+    .badge-secondary {
+      color: var(--secondary);
+      border-color: var(--secondary);
+      background: rgba(255, 184, 0, 0.1);
+    }
+
+    .badge-neutral {
+      color: var(--text-main);
+      border-color: rgba(255, 255, 255, 0.25);
+      background: rgba(255, 255, 255, 0.06);
+    }
+
+    h1 {
+      font-size: clamp(1.65rem, 3.2vw, 2.45rem);
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      margin-bottom: 12px;
+      color: #ffffff;
+      text-shadow: 0 0 14px rgba(0, 255, 136, 0.28);
+      line-height: 1.22;
+    }
+
+    .hero p {
+      color: var(--text-muted);
+      font-size: 1.02rem;
+      max-width: 850px;
+    }
+
+    /* SECTION HEADER */
+    .section-header {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 10px;
+      margin: 36px 0 18px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid rgba(0, 255, 136, 0.16);
+    }
+
+    .section-tag {
+      font-size: 0.75rem;
+      font-weight: 800;
+      padding: 4px 10px;
+      border-radius: 6px;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    .tag-primary {
+      background: rgba(0, 255, 136, 0.14);
+      color: var(--primary);
+      border: 1px solid var(--primary);
+    }
+
+    .tag-secondary {
+      background: rgba(255, 184, 0, 0.14);
+      color: var(--secondary);
+      border: 1px solid var(--secondary);
+    }
+
+    h2 {
+      font-size: clamp(1.25rem, 2.4vw, 1.45rem);
+      font-weight: 700;
+      color: #ffffff;
+    }
+
+    /* GRIDS & CARDS */
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 18px;
+    }
+
+    .card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: 14px;
+      padding: 22px;
+    }
+
+    .card-primary {
+      border-color: rgba(0, 255, 136, 0.35);
+      box-shadow: 0 0 20px rgba(0, 255, 136, 0.07);
+    }
+
+    .card-secondary {
+      border-color: rgba(255, 184, 0, 0.35);
+      box-shadow: 0 0 20px rgba(255, 184, 0, 0.07);
+    }
+
+    .env-title {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 10px;
+    }
+
+    .env-title h3 {
+      font-size: 1.14rem;
+      color: #ffffff;
+    }
+
+    .spec-pill {
+      font-size: 0.76rem;
+      font-weight: 700;
+      padding: 3px 9px;
+      border-radius: 999px;
+      white-space: nowrap;
+    }
+
+    .spec-win {
+      background: rgba(0, 212, 255, 0.14);
+      color: var(--accent-alt);
+      border: 1px solid rgba(0, 212, 255, 0.42);
+    }
+
+    .spec-linux {
+      background: rgba(0, 255, 136, 0.14);
+      color: var(--primary);
+      border: 1px solid rgba(0, 255, 136, 0.42);
+    }
+
+    .card p {
+      color: var(--text-muted);
+      font-size: 0.94rem;
+      margin-bottom: 10px;
+    }
+
+    .card p:last-child {
+      margin-bottom: 0;
+    }
+
+    ul.clean-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-top: 8px;
+    }
+
+    ul.clean-list li {
+      padding-left: 18px;
+      position: relative;
+      font-size: 0.93rem;
+      color: var(--text-main);
+    }
+
+    ul.clean-list li::before {
+      content: "▸";
+      position: absolute;
+      left: 0;
+      color: var(--primary);
+      font-weight: bold;
+    }
+
+    .secondary-bullets li::before {
+      color: var(--secondary) !important;
+    }
+
+    .context-box {
+      margin-top: 18px;
+      background: var(--bg-card-alt);
+      border: 1px solid rgba(0, 255, 136, 0.28);
+      border-left: 4px solid var(--primary);
+      border-radius: 14px;
+      padding: 18px 20px;
+    }
+
+    .context-box strong {
+      color: var(--primary);
+      display: block;
+      margin-bottom: 6px;
+      font-size: 0.98rem;
+    }
+
+    .context-box p {
+      color: var(--text-main);
+      font-size: 0.93rem;
+    }
+
+    /* TEST MATRIX TABLE */
+    .table-wrap {
+      background: var(--bg-card);
+      border-radius: 14px;
+      border: 1px solid rgba(0, 255, 136, 0.25);
+      overflow: hidden;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+      font-size: 0.92rem;
+    }
+
+    th, td {
+      padding: 14px 16px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+      vertical-align: top;
+    }
+
+    th {
+      background: rgba(0, 255, 136, 0.09);
+      color: var(--primary);
+      font-weight: 700;
+      text-transform: uppercase;
+      font-size: 0.78rem;
+      letter-spacing: 0.05em;
+    }
+
+    tr:last-child td {
+      border-bottom: none;
+    }
+
+    code {
+      background: rgba(255, 184, 0, 0.12);
+      padding: 2px 6px;
+      border-radius: 5px;
+      color: var(--secondary);
+      font-size: 0.86rem;
+    }
+
+    /* DECISION CARDS */
+    .verdict-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+
+    .verdict-badge {
+      font-size: 0.82rem;
+      font-weight: 800;
+      padding: 4px 11px;
+      border-radius: 999px;
+    }
+
+    .vb-win {
+      background: rgba(0, 212, 255, 0.15);
+      color: var(--accent-alt);
+      border: 1px solid rgba(0, 212, 255, 0.45);
+    }
+
+    .vb-linux {
+      background: rgba(0, 255, 136, 0.15);
+      color: var(--primary);
+      border: 1px solid rgba(0, 255, 136, 0.45);
+    }
+
+    footer {
+      margin-top: 40px;
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      padding-top: 18px;
+      border-top: 1px solid rgba(0, 255, 136, 0.14);
+    }
+
+    footer span {
+      color: var(--primary);
+      font-weight: 600;
+    }
+
+    /* RESPONSIVE MOBILE */
+    @media (max-width: 720px) {
+      body {
+        padding: 16px 12px 44px;
+      }
+
+      .hero {
+        padding: 24px 18px;
+        border-radius: 14px;
+        box-shadow: 0 0 16px rgba(0, 255, 136, 0.12);
+      }
+
+      h1 {
+        text-shadow: 0 0 8px rgba(0, 255, 136, 0.22);
+      }
+
+      .grid-2 {
+        grid-template-columns: 1fr;
+      }
+
+      .card {
+        padding: 18px 16px;
+      }
+
+      .table-wrap {
+        background: transparent;
+        border: none;
+      }
+
+      table, thead, tbody, th, td, tr {
+        display: block;
+        width: 100%;
+      }
+
+      thead {
+        display: none;
+      }
+
+      tbody tr {
+        background: var(--bg-card);
+        border: 1px solid rgba(0, 255, 136, 0.25);
+        border-radius: 14px;
+        padding: 16px;
+        margin-bottom: 14px;
+      }
+
+      tbody tr:last-child {
+        margin-bottom: 0;
+      }
+
+      td {
+        padding: 8px 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      }
+
+      td:first-child {
+        padding-top: 0;
+        color: #ffffff;
+        font-weight: 700;
+        font-size: 1rem;
+      }
+
+      td:last-child {
+        border-bottom: none;
+        padding-bottom: 0;
+      }
+
+      td::before {
+        content: attr(data-label);
+        display: block;
+        font-size: 0.72rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+        color: var(--secondary);
+        margin-bottom: 4px;
+      }
+
+      td:first-child::before {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+
+    <!-- ENCABEZADO -->
+    <header class="hero">
+      <div class="badge-row">
+        <span class="badge badge-primary">Materia · Sistemas Operativos</span>
+        <span class="badge badge-secondary">Benchmarks y Matrices</span>
+        <span class="badge badge-neutral">AGIL · Grupo 11</span>
+      </div>
+      <h1>Evaluación Práctica: Windows 11 vs. Linux Mint</h1>
+      <p>
+        Pruebas en entornos aislados (sin <em>dual-boot</em>), métricas técnicas comparadas y criterios de decisión para cada organización.
+      </p>
+    </header>
+
+    <!-- 1. ENTORNOS DE PRUEBA -->
+    <div class="section-header">
+      <span class="section-tag tag-primary">Paso 1 · Entornos de Prueba</span>
+      <h2>Por qué usamos equipos distintos</h2>
+    </div>
+
+    <div class="grid-2">
+      <div class="card card-secondary">
+        <div class="env-title">
+          <h3>Windows 11</h3>
+          <span class="spec-pill spec-win">VM VirtualBox · 8 GB RAM</span>
+        </div>
+        <p>
+          Se corrió en máquina virtual aislada con 8 GB de RAM asignados porque en 4 GB falló.
+        </p>
+        <ul class="clean-list secondary-bullets">
+          <li>Permite aislar pruebas sin alterar el equipo base.</li>
+          <li>Refleja entornos administrativos con herramientas clásicas.</li>
+        </ul>
+      </div>
+
+      <div class="card card-primary">
+        <div class="env-title">
+          <h3>Linux Mint</h3>
+          <span class="spec-pill spec-linux">Hardware Real · 4 GB (3,7 GiB)</span>
+        </div>
+        <p>
+          Instalado directo en hardware físico (notebook Positivo BGH AT500) con 4 GB de RAM (3,7 GiB utilizables), recuperando un equipo que tenía otro Windows y ya no funcionaba.
+        </p>
+        <ul class="clean-list">
+          <li>Permitió volver operativo un equipo que ya no rendía con su sistema anterior.</li>
+          <li>Ideal para evaluar fluidez, consumo de memoria y recuperación.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="context-box">
+      <strong>Qué demostró esta diferencia de equipos</strong>
+      <p>
+        Windows falló en 4 GB y requirió 8 GB en máquina virtual, mientras que con Linux Mint logramos hacer andar en hardware real de 4 GB una notebook que antes tenía otro Windows y ya no funcionaba. Esa experiencia práctica reforzó el valor de evaluar cada sistema según el hardware y el contexto real de uso.
+      </p>
+    </div>
+
+    <!-- 2. BATERÍA DE PRUEBAS -->
+    <div class="section-header">
+      <span class="section-tag tag-secondary">Paso 2 · Lo que medimos en la práctica</span>
+      <h2>6 ejes clave de evaluación técnica</h2>
+    </div>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Eje Evaluado</th>
+            <th>Qué Probamos</th>
+            <th>Enfoque Windows</th>
+            <th>Enfoque Linux Mint</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Consola y automatización</td>
+            <td data-label="Qué Probamos">Resolución de tareas y control del sistema desde línea de comandos.</td>
+            <td data-label="Enfoque Windows"><code>PowerShell</code> y administración del entorno.</td>
+            <td data-label="Enfoque Linux Mint"><code>Bash</code> y comandos nativos de shell.</td>
+          </tr>
+          <tr>
+            <td>Memoria RAM y multitarea</td>
+            <td data-label="Qué Probamos">Consumo en reposo y respuesta al abrir múltiples aplicaciones.</td>
+            <td data-label="Enfoque Windows">Mayor huella base y servicios activos en segundo plano.</td>
+            <td data-label="Enfoque Linux Mint">Menor consumo base, muy útil en equipos con poca RAM.</td>
+          </tr>
+          <tr>
+            <td>Estrés y recuperación</td>
+            <td data-label="Qué Probamos">Carga pesada en planillas y recuperación ante bloqueos/cuelgues.</td>
+            <td data-label="Enfoque Windows">Gestión de tareas, reinicio del entorno y puntos de restauración.</td>
+            <td data-label="Enfoque Linux Mint">Finalización selectiva de procesos (<code>killall</code> / <code>kill</code>) sin reiniciar todo.</td>
+          </tr>
+          <tr>
+            <td>Permisos entre usuarios</td>
+            <td data-label="Qué Probamos">Aislamiento de carpetas y archivos entre distintas cuentas.</td>
+            <td data-label="Enfoque Windows">Listas de control de acceso (<strong>ACLs</strong>).</td>
+            <td data-label="Enfoque Linux Mint">Permisos estándar <strong>POSIX</strong> (por ejemplo, <code>chmod 700</code>).</td>
+          </tr>
+          <tr>
+            <td>Firma digital y criptografía</td>
+            <td data-label="Qué Probamos">Protección, validación de identidad/integridad y cifrado de documentos.</td>
+            <td data-label="Enfoque Windows">Compatibilidad con herramientas y certificados usados en gestión.</td>
+            <td data-label="Enfoque Linux Mint">Soporte criptográfico y de firma según paquetes/requisitos.</td>
+          </tr>
+          <tr>
+            <td>Respaldo y restauración</td>
+            <td data-label="Qué Probamos">Copia de seguridad y vuelta a un estado seguro tras fallos o cambios.</td>
+            <td data-label="Enfoque Windows">Respaldos programados y recuperación del sistema.</td>
+            <td data-label="Enfoque Linux Mint">Sincronización con <code>rsync</code> e <strong>instantáneas</strong> del sistema.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- 3. DICTAMEN FINAL -->
+    <div class="section-header">
+      <span class="section-tag tag-primary">Paso 3 · Dictamen Final</span>
+      <h2>Recomendación por cliente a partir de las matrices</h2>
+    </div>
+
+    <div class="grid-2">
+      <div class="card card-secondary">
+        <div class="verdict-header">
+          <h3>Caso A · Estudio Contable (30 PCs)</h3>
+          <span class="verdict-badge vb-win">Windows 11 Pro</span>
+        </div>
+        <p><strong>Por qué conviene:</strong></p>
+        <ul class="clean-list secondary-bullets">
+          <li>Máxima compatibilidad con software contable, aplicativos impositivos y dispositivos de oficina.</li>
+          <li>Menor fricción operativa y curva de aprendizaje para el personal administrativo.</li>
+          <li>Facilita administración centralizada, seguridad y respaldo continuo de información sensible.</li>
+        </ul>
+      </div>
+
+      <div class="card card-primary">
+        <div class="verdict-header">
+          <h3>Caso B · Laboratorio UNP (25 PCs)</h3>
+          <span class="verdict-badge vb-linux">Linux Mint + Piloto</span>
+        </div>
+        <p><strong>Por qué conviene:</strong></p>
+        <ul class="clean-list">
+          <li>Aprovecha mejor equipos con recursos limitados y reduce costos de licenciamiento.</li>
+          <li>Permite aislar perfiles de estudiantes y restaurar rápido el entorno entre clases.</li>
+          <li>Se recomienda iniciar con una <strong>prueba piloto</strong> y contemplar excepciones/alternativas para materias que exijan software específico.</li>
+        </ul>
+      </div>
+    </div>
+
+    <footer>
+      Materia Sistemas Operativos · <span>Consultora AGIL (Grupo 11 · Comisión 09)</span> · UN Pilar
+    </footer>
+
+  </div>
+</body>
+</html>
