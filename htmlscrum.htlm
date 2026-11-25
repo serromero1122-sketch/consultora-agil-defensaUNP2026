@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Consultora AGIL · Resumen Ejecutivo del Proyecto</title>
+  <style>
+    :root {
+      --bg-dark: #060913;
+      --bg-card: #0c1222;
+      --bg-card-alt: #10182d;
+      --cyan: #00f5ff;
+      --magenta: #ff2a85;
+      --green: #39ff14;
+      --purple: #b84dff;
+      --text-main: #eaf2ff;
+      --text-muted: #9eb0cc;
+      --border-subtle: rgba(255, 255, 255, 0.08);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      background-color: var(--bg-dark);
+      background-image:
+        radial-gradient(circle at 15% 15%, rgba(0, 245, 255, 0.08), transparent 35%),
+        radial-gradient(circle at 85% 20%, rgba(255, 42, 133, 0.08), transparent 35%),
+        radial-gradient(circle at 50% 90%, rgba(57, 255, 20, 0.06), transparent 40%);
+      color: var(--text-main);
+      line-height: 1.6;
+      padding: 28px 16px 56px;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .container {
+      max-width: 1120px;
+      margin: 0 auto;
+    }
+
+    /* HEADER / HERO */
+    .hero {
+      background: linear-gradient(145deg, #0b1224, #070b17);
+      border: 1px solid rgba(0, 245, 255, 0.45);
+      box-shadow: 0 0 28px rgba(0, 245, 255, 0.16), inset 0 0 18px rgba(0, 245, 255, 0.06);
+      border-radius: 18px;
+      padding: 36px 32px;
+      margin-bottom: 28px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .badge-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+
+    .badge {
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      padding: 5px 11px;
+      border-radius: 999px;
+      border: 1px solid;
+    }
+
+    .badge-cyan {
+      color: var(--cyan);
+      border-color: var(--cyan);
+      background: rgba(0, 245, 255, 0.08);
+    }
+
+    .badge-magenta {
+      color: var(--magenta);
+      border-color: var(--magenta);
+      background: rgba(255, 42, 133, 0.08);
+    }
+
+    .badge-green {
+      color: var(--green);
+      border-color: var(--green);
+      background: rgba(57, 255, 20, 0.08);
+    }
+
+    h1 {
+      font-size: clamp(1.65rem, 3.2vw, 2.5rem);
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      margin-bottom: 12px;
+      color: #ffffff;
+      text-shadow: 0 0 14px rgba(0, 245, 255, 0.35);
+      line-height: 1.22;
+    }
+
+    .hero p {
+      color: var(--text-muted);
+      font-size: 1.02rem;
+      max-width: 820px;
+    }
+
+    /* KPI STRIP */
+    .kpi-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      gap: 14px;
+      margin-bottom: 34px;
+    }
+
+    .kpi-card {
+      background: var(--bg-card);
+      border-radius: 14px;
+      padding: 18px 20px;
+      border: 1px solid var(--border-subtle);
+    }
+
+    .kpi-card.cyan { border-top: 3px solid var(--cyan); box-shadow: 0 6px 20px rgba(0, 245, 255, 0.08); }
+    .kpi-card.magenta { border-top: 3px solid var(--magenta); box-shadow: 0 6px 20px rgba(255, 42, 133, 0.08); }
+    .kpi-card.green { border-top: 3px solid var(--green); box-shadow: 0 6px 20px rgba(57, 255, 20, 0.08); }
+    .kpi-card.purple { border-top: 3px solid var(--purple); box-shadow: 0 6px 20px rgba(184, 77, 255, 0.08); }
+
+    .kpi-value {
+      font-size: 1.8rem;
+      font-weight: 800;
+      line-height: 1.15;
+      margin-bottom: 4px;
+    }
+
+    .cyan .kpi-value { color: var(--cyan); }
+    .magenta .kpi-value { color: var(--magenta); }
+    .green .kpi-value { color: var(--green); }
+    .purple .kpi-value { color: var(--purple); }
+
+    .kpi-label {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+    }
+
+    /* SECTION HEADERS */
+    .section-header {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 10px;
+      margin: 36px 0 18px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .section-tag {
+      font-size: 0.75rem;
+      font-weight: 800;
+      padding: 4px 10px;
+      border-radius: 6px;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    .tag-scrum {
+      background: rgba(255, 42, 133, 0.15);
+      color: var(--magenta);
+      border: 1px solid var(--magenta);
+    }
+
+    .tag-so {
+      background: rgba(0, 245, 255, 0.15);
+      color: var(--cyan);
+      border: 1px solid var(--cyan);
+    }
+
+    .tag-verdict {
+      background: rgba(57, 255, 20, 0.15);
+      color: var(--green);
+      border: 1px solid var(--green);
+    }
+
+    h2 {
+      font-size: clamp(1.25rem, 2.4vw, 1.45rem);
+      font-weight: 700;
+      color: #ffffff;
+    }
+
+    /* CARDS & GRIDS */
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 18px;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 18px;
+    }
+
+    .card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: 14px;
+      padding: 22px;
+    }
+
+    .card-neon-cyan {
+      border-color: rgba(0, 245, 255, 0.35);
+      box-shadow: 0 0 20px rgba(0, 245, 255, 0.07);
+    }
+
+    .card-neon-magenta {
+      border-color: rgba(255, 42, 133, 0.35);
+      box-shadow: 0 0 20px rgba(255, 42, 133, 0.07);
+    }
+
+    .card-neon-green {
+      border-color: rgba(57, 255, 20, 0.35);
+      box-shadow: 0 0 20px rgba(57, 255, 20, 0.07);
+    }
+
+    .card h3 {
+      font-size: 1.1rem;
+      margin-bottom: 10px;
+      color: #ffffff;
+    }
+
+    .card p {
+      color: var(--text-muted);
+      font-size: 0.94rem;
+      margin-bottom: 12px;
+    }
+
+    ul.clean-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 9px;
+    }
+
+    ul.clean-list li {
+      padding-left: 18px;
+      position: relative;
+      font-size: 0.93rem;
+      color: var(--text-main);
+    }
+
+    ul.clean-list li::before {
+      content: "▸";
+      position: absolute;
+      left: 0;
+      color: var(--cyan);
+      font-weight: bold;
+    }
+
+    .magenta-bullets li::before {
+      color: var(--magenta) !important;
+    }
+
+    .green-bullets li::before {
+      color: var(--green) !important;
+    }
+
+    /* SPRINT TIMELINE */
+    .sprint-bars {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 14px;
+      margin-top: 16px;
+    }
+
+    .sprint-box {
+      background: var(--bg-card-alt);
+      border: 1px solid rgba(255, 42, 133, 0.28);
+      border-radius: 12px;
+      padding: 16px;
+    }
+
+    .sprint-box strong {
+      display: block;
+      color: var(--magenta);
+      font-size: 0.95rem;
+      margin-bottom: 4px;
+    }
+
+    .sprint-sp {
+      font-size: 1.35rem;
+      font-weight: 800;
+      color: #ffffff;
+      margin-bottom: 6px;
+    }
+
+    .bar-track {
+      width: 100%;
+      height: 8px;
+      background: rgba(255, 255, 255, 0.08);
+      border-radius: 999px;
+      overflow: hidden;
+      margin-bottom: 8px;
+    }
+
+    .bar-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--magenta), var(--cyan));
+      border-radius: 999px;
+    }
+
+    .sprint-desc {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    /* TABLE & MOBILE CARDS */
+    .table-wrap {
+      background: var(--bg-card);
+      border-radius: 14px;
+      border: 1px solid rgba(0, 245, 255, 0.25);
+      overflow: hidden;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+      font-size: 0.93rem;
+    }
+
+    th, td {
+      padding: 15px 16px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+      vertical-align: top;
+    }
+
+    th {
+      background: rgba(0, 245, 255, 0.08);
+      color: var(--cyan);
+      font-weight: 700;
+      text-transform: uppercase;
+      font-size: 0.8rem;
+      letter-spacing: 0.05em;
+    }
+
+    tr:last-child td {
+      border-bottom: none;
+    }
+
+    .sub-muted {
+      display: block;
+      color: var(--text-muted);
+      font-size: 0.84rem;
+      margin-top: 2px;
+    }
+
+    .pill {
+      display: inline-block;
+      padding: 4px 10px;
+      border-radius: 999px;
+      font-size: 0.8rem;
+      font-weight: 700;
+    }
+
+    .pill-win {
+      background: rgba(0, 245, 255, 0.14);
+      color: var(--cyan);
+      border: 1px solid rgba(0, 245, 255, 0.4);
+    }
+
+    .pill-linux {
+      background: rgba(57, 255, 20, 0.14);
+      color: var(--green);
+      border: 1px solid rgba(57, 255, 20, 0.4);
+    }
+
+    /* FOOTER */
+    footer {
+      margin-top: 40px;
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      padding-top: 18px;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    footer span {
+      color: var(--cyan);
+      font-weight: 600;
+    }
+
+    /* RESPONSIVE MOBILE */
+    @media (max-width: 720px) {
+      body {
+        padding: 16px 12px 44px;
+      }
+
+      .hero {
+        padding: 24px 18px;
+        border-radius: 14px;
+        box-shadow: 0 0 16px rgba(0, 245, 255, 0.12);
+      }
+
+      h1 {
+        text-shadow: 0 0 8px rgba(0, 245, 255, 0.25);
+      }
+
+      .hero p {
+        font-size: 0.95rem;
+      }
+
+      .kpi-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+      }
+
+      .kpi-card {
+        padding: 14px;
+      }
+
+      .kpi-value {
+        font-size: 1.45rem;
+      }
+
+      .kpi-label {
+        font-size: 0.82rem;
+      }
+
+      .grid-2, .grid-3, .sprint-bars {
+        grid-template-columns: 1fr;
+      }
+
+      .card {
+        padding: 18px 16px;
+      }
+
+      /* Tabla convertida en tarjetas apiladas en celular */
+      .table-wrap {
+        background: transparent;
+        border: none;
+      }
+
+      table, thead, tbody, th, td, tr {
+        display: block;
+        width: 100%;
+      }
+
+      thead {
+        display: none;
+      }
+
+      tbody tr {
+        background: var(--bg-card);
+        border: 1px solid rgba(0, 245, 255, 0.28);
+        border-radius: 14px;
+        padding: 16px;
+        margin-bottom: 14px;
+      }
+
+      tbody tr:last-child {
+        margin-bottom: 0;
+        border-color: rgba(57, 255, 20, 0.28);
+      }
+
+      td {
+        padding: 8px 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      }
+
+      td:first-child {
+        padding-top: 0;
+        font-size: 1.02rem;
+      }
+
+      td:last-child {
+        border-bottom: none;
+        padding-bottom: 0;
+      }
+
+      td::before {
+        content: attr(data-label);
+        display: block;
+        font-size: 0.72rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+        color: var(--text-muted);
+        margin-bottom: 4px;
+      }
+
+      td:first-child::before {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+
+    <!-- ENCABEZADO GENERAL -->
+    <header class="hero">
+      <div class="badge-row">
+        <span class="badge badge-cyan">Consultora AGIL · Grupo 11</span>
+        <span class="badge badge-magenta">Metodología Scrum</span>
+        <span class="badge badge-green">Sistemas Operativos · UN Pilar</span>
+      </div>
+      <h1>Diagnóstico y Recomendación Tecnológica para Entornos Reales</h1>
+      <p>
+        Cómo organizamos un equipo de trabajo ágil en 4 Sprints para evaluar, medir con pruebas reales y recomendar el sistema operativo ideal para dos organizaciones con necesidades completamente distintas.
+      </p>
+    </header>
+
+    <!-- INDICADORES CLAVE -->
+    <section class="kpi-grid">
+      <div class="kpi-card cyan">
+        <div class="kpi-value">2 Casos</div>
+        <div class="kpi-label">Estudio Contable (30 PCs) y Laboratorio Universitario (25 PCs)</div>
+      </div>
+      <div class="kpi-card magenta">
+        <div class="kpi-value">4 Sprints</div>
+        <div class="kpi-label">164 Story Points completados (41 SP de promedio por sprint)</div>
+      </div>
+      <div class="kpi-card green">
+        <div class="kpi-value">6 Ejes</div>
+        <div class="kpi-label">Pruebas prácticas de rendimiento, seguridad, consola y respaldo</div>
+      </div>
+      <div class="kpi-card purple">
+        <div class="kpi-value">100% Medible</div>
+        <div class="kpi-label">Decisiones basadas en matrices ponderadas y evidencia técnica</div>
+      </div>
+    </section>
+
+    <!-- BLOQUE 1: SCRUM -->
+    <div class="section-header">
+      <span class="section-tag tag-scrum">Bloque 1 · Gestión Ágil</span>
+      <h2>Cómo trabajamos con Scrum</h2>
+    </div>
+
+    <div class="grid-2">
+      <div class="card card-neon-magenta">
+        <h3>1. Roles rotativos y organización del equipo</h3>
+        <p>
+          Funcionamos como una consultora real (<strong>AGIL</strong>), dividiendo responsabilidades y rotando los roles clave en cada etapa para que todos dominaran tanto la gestión como la ejecución técnica:
+        </p>
+        <ul class="clean-list magenta-bullets">
+          <li><strong>Product Owner (PO):</strong> Priorizó qué necesitaba cada cliente y validó el valor de cada entrega.</li>
+          <li><strong>Scrum Master:</strong> Facilitó las reuniones, eliminó bloqueos y cuidó el ritmo de trabajo en cada Sprint.</li>
+          <li><strong>Developers:</strong> Diseñaron los entornos de prueba, ejecutaron los benchmarks y documentaron los hallazgos.</li>
+        </ul>
+      </div>
+
+      <div class="card card-neon-cyan">
+        <h3>2. De las necesidades del cliente a criterios medibles</h3>
+        <p>
+          Tradujimos los problemas de cada organización en <strong>Historias de Usuario (HU)</strong> y definimos reglas claras antes de probar nada:
+        </p>
+        <ul class="clean-list">
+          <li><strong>Caso A (HU-A1 a HU-A5):</strong> Estudio Contable Márquez y Asociados — prioridad en software impositivo, estabilidad y protección de datos sensibles.</li>
+          <li><strong>Caso B (HU-B1 a HU-B5):</strong> Laboratorio de Informática UNP — prioridad en aprovechamiento de hardware, agilidad docente y bajo costo.</li>
+          <li><strong>Estándar de evaluación (T27):</strong> Fijamos métricas objetivas (consumo de RAM, permisos, recuperación ante fallos y administración) para evitar opiniones subjetivas.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="card" style="margin-top: 18px;">
+      <h3>3. Evolución del trabajo en los 4 Sprints (164 Story Points totales)</h3>
+      <p>
+        El ritmo del equipo reflejó la naturaleza real de un proyecto técnico: un inicio de alto volumen de relevamiento y pruebas, seguido de etapas de validación fina, integración y cierre documental.
+      </p>
+      <div class="sprint-bars">
+        <div class="sprint-box">
+          <strong>Sprint 1 · Arranque y relevamiento</strong>
+          <div class="sprint-sp">68 SP</div>
+          <div class="bar-track"><div class="bar-fill" style="width: 100%;"></div></div>
+          <div class="sprint-desc">Definición de backlog, roles, alcance de ambos casos y armado inicial.</div>
+        </div>
+        <div class="sprint-box">
+          <strong>Sprint 2 · Pruebas y métricas</strong>
+          <div class="sprint-sp">55 SP</div>
+          <div class="bar-track"><div class="bar-fill" style="width: 81%;"></div></div>
+          <div class="sprint-desc">Ejecución de pruebas técnicas, criterios T27 y recolección de evidencia.</div>
+        </div>
+        <div class="sprint-box">
+          <strong>Sprint 3 · Ajuste y validación</strong>
+          <div class="sprint-sp">20 SP</div>
+          <div class="bar-track"><div class="bar-fill" style="width: 30%;"></div></div>
+          <div class="sprint-desc">Revisión cruzada, resolución de bloqueos y consolidación de matrices.</div>
+        </div>
+        <div class="sprint-box">
+          <strong>Sprint 4 · Dictamen y cierre</strong>
+          <div class="sprint-sp">21 SP</div>
+          <div class="bar-track"><div class="bar-fill" style="width: 31%;"></div></div>
+          <div class="sprint-desc">Redacción del informe técnico final, salvedades metodológicas y presentación.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- BLOQUE 2: SISTEMAS OPERATIVOS -->
+    <div class="section-header">
+      <span class="section-tag tag-so">Bloque 2 · Evaluación Técnica</span>
+      <h2>Qué probamos en Sistemas Operativos</h2>
+    </div>
+
+    <div class="grid-3">
+      <div class="card card-neon-cyan">
+        <h3>Entornos de prueba transparentes</h3>
+        <p>
+          Evaluamos <strong>Windows 11</strong> (entorno virtualizado con 8 GB de RAM) frente a <strong>Linux Mint</strong> (instalado directo en hardware con 4 GB / 3,7 GiB útiles), dejando explícitas las diferencias de arquitectura y carga para interpretar cada dato con rigor.
+        </p>
+      </div>
+      <div class="card card-neon-magenta">
+        <h3>Rendimiento y estabilidad</h3>
+        <p>
+          Medimos cuánta memoria consume cada sistema en reposo y bajo multitarea exigente, además de simular bloqueos de planillas para comprobar qué tan rápido se recupera cada entorno sin perder trabajo.
+        </p>
+      </div>
+      <div class="card card-neon-green">
+        <h3>Seguridad, consola y respaldo</h3>
+        <p>
+          Comparamos el control de permisos entre usuarios (ACLs en Windows vs. permisos POSIX en Linux), automatización por consola (PowerShell vs. Bash), firma digital y copias de seguridad (<code>rsync</code> e instantáneas).
+        </p>
+      </div>
+    </div>
+
+    <!-- BLOQUE 3: DICTAMEN FINAL -->
+    <div class="section-header">
+      <span class="section-tag tag-verdict">Bloque 3 · Conclusiones para cada cliente</span>
+      <h2>Cuál sistema conviene en cada caso y por qué</h2>
+    </div>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Cliente / Escenario</th>
+            <th>Necesidad Principal</th>
+            <th>Recomendación AGIL</th>
+            <th>Por qué es la mejor decisión</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              <strong>Caso A · Estudio Contable</strong>
+              <span class="sub-muted">30 puestos administrativos</span>
+            </td>
+            <td data-label="Necesidad Principal">Compatibilidad total con aplicativos contables/fiscales, soporte oficial y continuidad operativa sin fricciones.</td>
+            <td data-label="Recomendación AGIL"><span class="pill pill-win">Windows 11 Pro</span></td>
+            <td data-label="Por qué es la mejor decisión">Evita problemas de compatibilidad con herramientas impositivas críticas, facilita políticas centralizadas y reduce el costo de adaptación del personal.</td>
+          </tr>
+          <tr>
+            <td>
+              <strong>Caso B · Laboratorio UNP</strong>
+              <span class="sub-muted">25 equipos educativos</span>
+            </td>
+            <td data-label="Necesidad Principal">Buen rendimiento en equipos con recursos acotados, seguridad multiusuario, licenciamiento $0 y despliegue ágil.</td>
+            <td data-label="Recomendación AGIL"><span class="pill pill-linux">Linux Mint (con prueba piloto)</span></td>
+            <td data-label="Por qué es la mejor decisión">Optimiza el consumo de RAM, permite restaurar entornos rápidamente entre clases y elimina costos de licencias, validando primero una prueba piloto por aula.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <footer>
+      Presentación ejecutiva elaborada por <span>Consultora AGIL (Grupo 11 · Comisión 09)</span> · Universidad Nacional de Pilar
+    </footer>
+
+  </div>
+</body>
+</html>
